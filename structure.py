@@ -2,8 +2,10 @@ import csv
 import datetime
 import time
 from decimal import Decimal
+from model import create_tables, insert_training, Data
+from knn import get_neighbors, get_response
 
-def process_trainingdataset(file_):
+def process_dataset(file_):
     trainingdataset = []
     with open(file_, "rb") as f:
         rows = csv.reader(f)
@@ -17,12 +19,14 @@ def process_trainingdataset(file_):
     return trainingdataset
 
 def init():
-    trainingdataset = process_trainingdataset("out.csv")
-    from model import create_tables, insert_training, Data
+    trainingdataset = process_dataset("out.csv")
     create_tables()
     insert_training(trainingdataset)
     print "data %s" % Data.select().count()
-
+    testdataset = process_dataset("test.csv")
+    for data in testdataset:
+        neighbors = get_neighbors(data)
+        result = get_response(neighbors)
 
 if __name__ == "__main__":
     init()
