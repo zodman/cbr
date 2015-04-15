@@ -5,6 +5,7 @@ from decimal import Decimal
 from model import create_tables, insert_training, Data, replace_category
 from knn import get_neighbors, get_response
 
+
 def process_dataset(file_):
     trainingdataset = []
     with open(file_, "rb") as f:
@@ -19,8 +20,9 @@ def process_dataset(file_):
                 success = True
             else:
                 success = False
-            trainingdataset.append([cat, Decimal(precio), timestamp,success])
+            trainingdataset.append([cat, Decimal(precio), timestamp, success])
     return trainingdataset
+
 
 def init():
     trainingdataset = process_dataset("out.csv")
@@ -34,7 +36,7 @@ def init():
         for i in neighbors:
             print i.data.pprint()
         result = get_response(neighbors)
-        print "%s >>>>>>>>>>>>> prediction: %s" % ( data[:-1], result)
+        print "%s >>>>>>>>>>>>> prediction: %s" % (data[:-1], result)
 
 
 
