@@ -2,7 +2,7 @@ import csv
 import datetime
 import time
 from decimal import Decimal
-from model import create_tables, insert_training, Data
+from model import create_tables, insert_training, Data, replace_category
 from knn import get_neighbors, get_response
 
 def process_dataset(file_):
@@ -15,7 +15,11 @@ def process_dataset(file_):
             DF = "%m/%d/%y-%H:%M:%S"
             fechahora = datetime.datetime.strptime(date_str, DF)
             timestamp = time.mktime(fechahora.timetuple())
-            trainingdataset.append([cat, Decimal(precio), timestamp, success])
+            if success == '1':
+                success = True
+            else:
+                success = False
+            trainingdataset.append([cat, Decimal(precio), timestamp,success])
     return trainingdataset
 
 def init():
@@ -24,9 +28,15 @@ def init():
     insert_training(trainingdataset)
     print "data %s" % Data.select().count()
     testdataset = process_dataset("test.csv")
+    replace_category(testdataset)
     for data in testdataset:
-        neighbors = get_neighbors(data)
+        neighbors = get_neighbors(data, k=10)
+        for i in neighbors:
+            print i.data.pprint()
         result = get_response(neighbors)
+        print "%s >>>>>>>>>>>>> prediction: %s" % ( data[:-1], result)
+
+
 
 if __name__ == "__main__":
     init()
