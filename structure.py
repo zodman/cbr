@@ -23,5 +23,6 @@ def init():
     insert_training(trainingdataset)
     print "data %s" % Data.select().count()
 
+
 if __name__ == "__main__":
     init()
