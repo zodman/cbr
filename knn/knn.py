@@ -27,7 +27,7 @@ def euclideanDistance(instance1, instance2):
         distance += pow((instance1[x] - instance2[x]), 2)
     return math.sqrt(distance)
 
-def getNeighbors(trainingSet, testInstance, k):
+def getNeighbors(trainingSet, testInstance):
     distances = []
     for x in range(len(trainingSet)):
         dist = euclideanDistance(testInstance, trainingSet[x])
@@ -68,7 +68,7 @@ def main():
     predictions=[]
     k = 3
     for x in range(len(testSet)):
-            neighbors = getNeighbors(trainingSet, testSet[x], k)
+            neighbors = getNeighbors(trainingSet, testSet[x])
             result = getResponse(neighbors)
             predictions.append(result)
             print('> predicted=' + repr(result) + ', actual=' + repr(testSet[x][-1]))
