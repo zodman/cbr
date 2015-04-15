@@ -76,10 +76,10 @@ def insert_data(category, price, timestamp, success):
     return Data.create(category=cat,
             price=price, timestamp=timestamp, success=success)
 
-def replace_category(test_datasets):
-    for i, dataset in enumerate(test_datasets):
-        cat = dataset[0]
-        id = insert_categories(cat).id
-        test_datasets[i][0] = id
+def replace_category(dataset):
+    cat = dataset[0]
+    id = insert_categories(cat).id
+    dataset[0] = id
+    return cat
 
         

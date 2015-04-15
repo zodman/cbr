@@ -30,13 +30,13 @@ def init():
     insert_training(trainingdataset)
     print "data %s" % Data.select().count()
     testdataset = process_dataset("test.csv")
-    replace_category(testdataset)
     for data in testdataset:
+        cat = replace_category(data)
         neighbors = get_neighbors(data, k=10)
         for i in neighbors:
             print i.data.pprint()
         result = get_response(neighbors)
-        print "%s >>>>>>>>>>>>> prediction: %s" % (data[:-1], result)
+        print "%s %s >>>>>>>>>>>>> prediction: %s" % (cat,data[:-1], result)
 
 
 
