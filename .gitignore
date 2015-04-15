@@ -2,3 +2,5 @@ local_settings.py
 *.pyc
 .*.sw*
 *.db
+out.csv
+test.csv
