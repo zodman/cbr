@@ -32,7 +32,7 @@ def init():
     testdataset = process_dataset("test.csv")
     for data in testdataset:
         cat = replace_category(data)
-        neighbors = get_neighbors(data, k=10)
+        neighbors = get_neighbors(data, k=1)
         for i in neighbors:
             print i.data.pprint()
         result = get_response(neighbors)
