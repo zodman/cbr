@@ -1,13 +1,18 @@
-from model import Data, Distance
+from model import Data, Distance, Category
 import math
 from decimal import Decimal
-
+from datetime import datetime
 
 def euclidean_distance(test_data, data_obj):
     distance = 0
-    data_list = [data_obj.category.id, data_obj.price,
-                 data_obj.timestamp]
-    test_data = test_data[:-1]
+    data_list = [data_obj.price,
+                 data_obj.weekday(),
+                 Data.is_light(data_obj.timestamp)
+                 ]
+    test_data = [test_data[1], 
+                datetime.fromtimestamp(test_data[2]).weekday(),
+                Data.is_light(test_data[2])
+                ]
     for i, elem in enumerate(data_list):
         distance += pow((Decimal(test_data[i]) - elem), 2)
     return math.sqrt(distance)
@@ -15,7 +20,9 @@ def euclidean_distance(test_data, data_obj):
 
 def get_neighbors(test_data, k=1):
     Distance.delete().execute()
-    for d in Data.select():
+    cat = test_data[0]
+    datas = Data.select().where(Data.category == cat)
+    for d in datas:
         dist = euclidean_distance(test_data, d)
         Distance.create(distance=dist, data=d)
     distances = Distance.select().order_by(Distance.distance.desc()).limit(k)

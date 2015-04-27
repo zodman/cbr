@@ -32,6 +32,20 @@ class Data(peewee.Model):
     def convert_datetime(self):
         return datetime.fromtimestamp(self.timestamp)
 
+    def weekday(self):
+        return self.convert_datetime().weekday()
+
+    @staticmethod
+    def is_light(timestamp):
+        dt = datetime.fromtimestamp(timestamp)
+        dt_check = datetime.fromtimestamp(timestamp)
+        dt_light_start = dt_check.replace(hour=9, minute=0, second=0, microsecond=0)
+        dt_light_finish = dt_check.replace(hour=6, minute=0, second=0, microsecond=0)
+        if dt >= dt_light_start and dt <= dt_light_finish:
+            return 1
+        else:
+            return 0
+
     def pprint(self):
         price = self.price
         cat = self.category.name
