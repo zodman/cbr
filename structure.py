@@ -28,15 +28,17 @@ def init():
     trainingdataset = process_dataset("out.csv")
     create_tables()
     insert_training(trainingdataset)
-    print "data %s" % Data.select().count()
+    #print "data %s" % Data.select().count()
     testdataset = process_dataset("test.csv")
     for data in testdataset:
         cat = replace_category(data)
-        neighbors = get_neighbors(data, k=1)
+        neighbors = get_neighbors(data, k=10)
         for i in neighbors:
-            print i.data.pprint()
+            print i.distance
+            #print i.data.pprint()
         result = get_response(neighbors)
-        print "%s %s >>>>>>>>>>>>> prediction: %s" % (cat,data[:-1], result)
+        break
+        #print "%s %s >>>>>>>>>>>>> prediction: %s" % (cat,data[:-1], result)
 
 
 
