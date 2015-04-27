@@ -1,7 +1,8 @@
 import peewee
 from datetime import datetime
 
-db = peewee.SqliteDatabase(':memory:')
+#db = peewee.SqliteDatabase(':memory:')
+db = peewee.SqliteDatabase('file.db')
 """
 import logging
 logger = logging.getLogger('peewee')
