@@ -5,3 +5,5 @@ local_settings.py
 out.csv
 test.csv
 *.txt
+doc/build
+tags
