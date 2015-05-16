@@ -17,9 +17,9 @@ URL = "http://waifu.ca/"
 TOKEN = os.environ.get("TOKEN")
 auth_params = dict(client_id=client_id, client_secret=client_secret)
 SITE = "MLM"
-TIMES  = random.randint(1,2)
-NUM_PAGE = random.randint(1,2)
-LIMIT = random.randint(1,2)
+TIMES  = random.randint(1,5)
+NUM_PAGE = random.randint(1,10)
+LIMIT = random.randint(1,20)
 FROM_DATE = datetime.datetime(year=2000, month=5, day=24)
 TO_DATE = datetime.datetime.now()
 
