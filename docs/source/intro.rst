@@ -185,6 +185,10 @@ Reusar, revisar, retener
         data[-1] = result
         insert_data(*data)
 
+demo:
+
+http://showterm.io/7571088a4c1f37a0a0942#fast
+
 
 Código fuente.
 http://github.com/zodman/cbr
