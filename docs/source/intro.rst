@@ -58,10 +58,6 @@ Con el pude obtener 24 categorías y mas de 100 productos.
 
 El campo de la fecha,hora,operación fueron generados con números aleatorios.
 
-.. code-block::
-
-    code
-
 ===
 CBR
 ===
@@ -71,11 +67,11 @@ Para implementar el CBR es necesario pasar por los 4 pasos:
 .. image:: https://i.imgur.com/bkfRHh0.png
 
 Recuperar
-~~~~~~~~~
+---------
 
 El proceso de recuperar consta de obtener los datos, esto podemos obtenerlos de nuestra DBK. Obtendríamos un registro nuevo.
 
-.. code-block:: txt
+.. code::
 
     shuf -n 10 out.csv > test.csv
     "Corral Para Bebe Super Seguro Lindos Colores Con Regalos","Bebés","349","08/30/00","10:49:13","0"
@@ -96,7 +92,7 @@ Estos datos son los que vamos a predecir.
 Los registros de entrenamientos son agregados a una base de datos. Para su manipulación posterior.
 
 Casos similares
-~~~~~~~~~~~~~~~
+---------------
 
 Con el primer registro tenemos que buscar en nuestra base de conocimiento los registros que sean similares,
 los cuales nos servirán para entrar:
@@ -106,7 +102,8 @@ los cuales nos servirán para entrar:
 
 
 Aplicando KNN
-~~~~~~~~~~~~~
+-------------
+
 Teniendo los casos similares, es necesario encontrar los vecinos mas cercanos (10 vecinos mas próximos).
 
 "test_data" es nuestro dato que queremos predecir.
@@ -166,7 +163,7 @@ el resultado que se estimó.
 
 
 Reusar, revisar, retener
-~~~~~~~~~~~~~~~~
+------------------------
 
 *Reusar*: Con la nueva estimación, esta se inserta  a la base datos en la tabla de entrenamiento.
 
@@ -199,5 +196,6 @@ Código fuente.
 http://github.com/zodman/cbr
 
 .. raw:: html
+
     <div data-theme="default" data-height="150" data-width="400" data-github="zodman/cbr" class="github-card"></div>
     <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
